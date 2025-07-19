@@ -31,6 +31,22 @@ const Gta6 = () => {
             })
     })
 
+    useGSAP(()=>{
+        const main = document.querySelector(".main");
+        main?.addEventListener('mousemove', function(e){
+            const xmove = (e.clientX / window.innerWidth - 0.5)*40;
+            gsap.to(".imagesdiv .text",{
+                x: `${xmove * 0.4}%`
+            })
+            gsap.to(".imagesdiv .sky",{
+                x: xmove
+            })
+            gsap.to(".imagesdiv .bg",{
+                x: xmove*1.7
+            })
+
+        })
+    }, [showContent])
 
     return (
         <>
@@ -78,14 +94,14 @@ const Gta6 = () => {
                         </div>
                     </div>
                     <div className='imagesdiv w-full overflow-hidden h-screen relative'>
-                        <img className='w-full h-full object-cover absolute top-0 left-0' src="./sky.png" alt="" />
-                        <img className='w-full h-full object-cover absolute top-0 left-0' src="./bg.png" alt="" />
+                        <img className='sky w-full h-full object-cover absolute top-0 left-0 scale-110' src="./sky.png" alt="" />
+                        <img className='bg w-full h-full object-cover absolute top-0 left-0 scale-105' src="./bg.png" alt="" />
                         <div className="text absolute top-10 left-1/2 -translate-x-1/2 ">
                         <h1 className='text-8xl leading-none -ml-10'>grand</h1>
                         <h1 className='text-8xl ml-15 leading-none'>theft</h1>
                         <h1 className='text-8xl leading-none -ml-10'>auto</h1>
                     </div>
-                        <img className='absolute h-170 -bottom-[22%] left-1/2 -translate-x-40' src="./girlbg.png" alt="" />
+                        <img className='character absolute h-170 -bottom-[22%] left-1/2 -translate-x-40' src="./girlbg.png" alt="" />
                     </div>
                     <div className='bottomnav absolute bottom-0 left-0 w-full py-10 px-10 bg-gradient-to-t from-black to-transparent'>
                         <div className='flex gap-4'>
