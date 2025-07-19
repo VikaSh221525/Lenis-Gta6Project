@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "pricedown";
+    src: url('./pricedown.otf');
+}
+
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.bebas-neue-bold {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.grid>div{
+    grid-row: var(--r);
+    grid-column: var(--c);
+}
+
+.pricedown{
+    font-family: 'pricedown';
+}
+
+
