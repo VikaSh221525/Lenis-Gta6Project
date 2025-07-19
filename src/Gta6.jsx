@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowDown } from 'lucide-react'
 
 const Gta6 = () => {
@@ -32,6 +32,44 @@ const Gta6 = () => {
     })
 
     useGSAP(() => {
+        if (!showContent) return;
+
+        gsap.to('.main', {
+            rotate: 0,
+            scale: 1,
+            delay: '-1',
+            duration: 2,
+            ease: 'expo.inOut'
+        })
+        gsap.to('.sky', {
+            rotate: 0,
+            scale: 1.1,
+            delay: '-0.8',
+            duration: 2,
+            ease: 'expo.inOut'
+        })
+        gsap.to('.bg', {
+            rotate: 0,
+            scale: 1.1,
+            delay: '-0.8',
+            duration: 2,
+            ease: 'expo.inOut'
+        })
+        gsap.to('.text', {
+            rotate: 0,
+            scale: 1,
+            delay: '-0.8',
+            duration: 2,
+            ease: 'expo.inOut'
+        })
+        gsap.to('.character', {
+            bottom: '-22%',
+            rotate: 0,
+            delay: '-0.8',
+            duration: 2,
+            ease: 'expo.inOut'
+        })
+
         const main = document.querySelector(".main");
         main?.addEventListener('mousemove', function (e) {
             const xmove = (e.clientX / window.innerWidth - 0.5) * 40;
@@ -47,6 +85,15 @@ const Gta6 = () => {
 
         })
     }, [showContent])
+
+    useEffect(() => {
+        if (showContent) {
+            const audio = new Audio('/gta.mp3');
+            audio.loop = true;
+            audio.play();
+        }
+    }, [showContent]);
+
 
     return (
         <>
@@ -81,8 +128,8 @@ const Gta6 = () => {
                 </svg>
             </div>
 
-            {showContent && <div className='main w-full text-white'>
-                <div className='w-full h-screen bg-zinc-900 text-white pricedown'>
+            {showContent && <div className='main w-full text-white -rotate-10 scale-[1.7]'>
+                <div className='Landing overflow-hidden relative w-full h-screen bg-zinc-900 text-white pricedown'>
                     <div className="navbar w-full py-10 px-10 absolute top-0 left-0 z-10">
                         <div className='logo flex items-center-safe gap-5'>
                             <div className='lines flex flex-col gap-1'>
@@ -94,14 +141,14 @@ const Gta6 = () => {
                         </div>
                     </div>
                     <div className='imagesdiv w-full overflow-hidden h-screen relative'>
-                        <img className='sky w-full h-full object-cover absolute top-0 left-0 scale-110' src="./sky.png" alt="" />
-                        <img className='bg w-full h-full object-cover absolute top-0 left-0 scale-105' src="./bg.png" alt="" />
-                        <div className="text absolute top-10 left-1/2 -translate-x-1/2 ">
+                        <img className='sky w-full h-full object-cover absolute top-0 left-0 scale-[1.7] -rotate-20' src="./sky.png" alt="" />
+                        <img className='bg w-full h-full object-cover absolute top-0 left-0 scale-[1.8] -rotate-3' src="./bg.png" alt="" />
+                        <div className="text absolute top-10 left-1/2 -translate-x-1/2 scale-[1.4] -rotate-10">
                             <h1 className='text-8xl leading-none -ml-10'>grand</h1>
                             <h1 className='text-8xl ml-15 leading-none'>theft</h1>
                             <h1 className='text-8xl leading-none -ml-10'>auto</h1>
                         </div>
-                        <img className='character absolute h-170 -bottom-[22%] left-1/2 -translate-x-40' src="./girlbg.png" alt="" />
+                        <img className='character absolute h-170 -bottom-[40%] left-1/2 -translate-x-40 -rotate-10' src="./girlbg.png" alt="" />
                     </div>
                     <div className='bottomnav absolute bottom-0 left-0 w-full py-10 px-10 bg-gradient-to-t from-black to-transparent'>
                         <div className='flex gap-4'>
